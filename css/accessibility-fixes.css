@@ -1,0 +1,24 @@
+/* Accessibility fixes for iframe */
+.google-map {
+    border: 0;
+}
+
+/* Add focus styles for icon links */
+.shop-icon:focus,
+.social-icon-link:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+/* Ensure text is visible for screen readers but hidden visually */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
