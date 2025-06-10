@@ -27,6 +27,7 @@
 - [Customization](#-customization)
 - [Contributing](#-contributing)
 - [License](#-license)
+- [Accessibility](#-accessibility)
 - [Future Enhancements](#-future-enhancements)
 
 ## 🔍 Overview
@@ -114,7 +115,7 @@ s3-deployment/
 }
 ```
 
-4. Set index.html as both the index and error document
+1. Set index.html as both the index and error document
 
 ### 2. Repository Setup
 
@@ -155,10 +156,10 @@ Configure the following secrets in your GitHub repository:
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Create your feature branch (`git checkout -b feature/amazing-feature`)
+1. Commit your changes (`git commit -m 'Add some amazing feature'`)
+1. Push to the branch (`git push origin feature/amazing-feature`)
+1. Open a Pull Request
 
 ## 📄 License
 
@@ -174,6 +175,7 @@ The S3-Deployment project roadmap includes several exciting enhancements:
 - **Cache Control**: Implement proper cache control headers for optimized content delivery
 - **Automated Testing**: Add pre-deployment testing for HTML validation and broken links
 - **Environment Variables**: Support for different environments (dev, staging, production)
+- **Accessibility Improvements**: Enhance website accessibility by adding ARIA attributes, proper focus management, and screen reader support
 
 ### Mid-term Goals
 
@@ -190,6 +192,19 @@ The S3-Deployment project roadmap includes several exciting enhancements:
 - **Analytics Integration**: Automated setup of analytics and monitoring
 
 ---
+
+## 🔒 Accessibility
+
+The project includes accessibility improvements to ensure the website is usable by people with disabilities:
+
+- Added descriptive title attributes to icon links
+- Added screen reader text for icon-only links
+- Fixed iframe missing title attribute
+- Removed inline styles in favor of CSS
+- Added focus styles for interactive elements
+- Created accessibility-fixes.css and accessibility-fixes.js files
+
+These changes help ensure compliance with WCAG guidelines and improve the user experience for all visitors.
 
 ## Technologies Used
 
