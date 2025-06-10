@@ -3,6 +3,12 @@ on:
   push:
     branches:
       - main
+    paths-ignore: # Ignore changes to files that are not relevant to the deploy actio
+      - ".github/workflows/s3.yml"
+      - "README.md"
+      - "LICENSE"
+      - "Dockerfile"
+      - "*.txt" # Ignore text files
 jobs:
   deploy:
     name: Deploy
