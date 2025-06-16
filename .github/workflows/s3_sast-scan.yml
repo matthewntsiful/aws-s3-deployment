@@ -1,5 +1,11 @@
 name: CI/CD Pipeline to Deploy Static Website to S3
 
+# Add permissions for the entire workflow
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: read
+
 on:
   push:
     branches:
@@ -63,4 +69,3 @@ jobs:
         run: |
           echo "Deployment completed successfully!"
 
-          ####
