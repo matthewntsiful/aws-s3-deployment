@@ -22,6 +22,9 @@ jobs:
 
       - name: Enable Dependabot
         uses: dependabot/fetch-metadata@v1
+        if: ${{ github.event_name == 'pull_request' && github.actor == 'dependabot[bot]' }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run CodeQL Analysis
         uses: github/codeql-action/analyze@v3
