@@ -26,10 +26,13 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+
       - name: Run CodeQL Analysis
         uses: github/codeql-action/analyze@v3
-        with:
-          category: "security"
 
   deploy:
     name: Deploy to S3
