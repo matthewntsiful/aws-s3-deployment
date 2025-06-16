@@ -8,7 +8,9 @@ on:
       - 'README.md'
     
   pull_request:
-      
+    branches:
+      - dependabot/**
+
 jobs:
   security-scan:
     name: Security Scan
