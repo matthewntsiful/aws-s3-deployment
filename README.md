@@ -1,4 +1,4 @@
-# 🚀 S3-Deployment Project
+# 🚀 AWS-S3-Deployment Project
 
 ## Automated Web Application Deployment to AWS S3
 
@@ -32,10 +32,12 @@
 
 ## 🔍 Overview
 
-This project demonstrates an automated deployment pipeline that deploys a responsive web application to AWS S3 using GitHub Actions. The workflow is triggered when code is pushed to the main branch, automatically syncing the updated application to an S3 bucket configured for static website hosting. The deployment process ignores specific files like README.md and configuration files to prevent unnecessary deployments.
+This project demonstrates a comprehensive CI/CD pipeline that deploys a responsive web application to AWS S3 using GitHub Actions. The workflow includes security scanning with CodeQL and Dependabot before deployment, ensuring that code is secure and free from vulnerabilities. The pipeline is triggered when code is pushed to the main branch, automatically running security checks and then syncing the updated application to an S3 bucket configured for static website hosting. The deployment process ignores specific files like README.md and configuration files to prevent unnecessary deployments.
 
 ## ✨ Features
 
+- **Complete CI/CD Pipeline**: Integrated security scanning and deployment workflow
+- **Security Scanning**: CodeQL analysis for JavaScript vulnerabilities and Dependabot for dependency scanning
 - **Continuous Deployment**: Automatic deployment to S3 on push to main branch
 - **Selective Deployment Triggers**: Path-ignore configuration to prevent unnecessary deployments
 - **Secure Credential Management**: Using GitHub Secrets for secure AWS credential storage
@@ -49,7 +51,8 @@ This project demonstrates an automated deployment pipeline that deploys a respon
 s3-deployment/
 ├── .github/
 │   └── workflows/
-│       └── s3.yml        # GitHub Actions workflow file for S3 deployment
+│       ├── s3.yml                # Basic GitHub Actions workflow for S3 deployment
+│       └── s3_sast-scan.yml      # Enhanced CI/CD pipeline with security scanning
 ├── css/                  # CSS stylesheets
 │   ├── bootstrap-icons.css
 │   ├── bootstrap.min.css
@@ -76,13 +79,23 @@ s3-deployment/
 
 ## 🔄 Deployment Workflow
 
+### CI/CD Pipeline with Security Scanning
+
+A comprehensive CI/CD pipeline has been added to this project that incorporates security scanning before deployment:
+
 1. Code is pushed to the main branch (README.md and other specified files are ignored via paths-ignore)
 2. GitHub Actions workflow is triggered
-3. Code is checked out
-4. AWS credentials are configured using GitHub Secrets
-5. Files are synced to the S3 bucket using the AWS CLI
-6. Excluded files and directories are not uploaded to S3
-7. Website is immediately available via the S3 website endpoint URL
+3. Security scanning is performed:
+   - CodeQL analysis for JavaScript vulnerabilities
+   - Dependabot alerts for dependency vulnerabilities
+4. After security checks pass, deployment begins:
+   - Code is checked out
+   - AWS credentials are configured using GitHub Secrets
+   - Files are synced to the S3 bucket using the AWS CLI
+5. Excluded files and directories are not uploaded to S3
+6. Website is immediately available via the S3 website endpoint URL
+
+The workflow file `.github/workflows/s3_sast-scan.yml` implements this complete CI/CD pipeline with security scanning.
 
 ## 📋 Prerequisites
 
@@ -122,7 +135,8 @@ s3-deployment/
 1. Fork or clone this repository
 2. Update the web application files as needed
 3. Configure GitHub Secrets (see below)
-4. Push changes to the main branch to trigger deployment
+4. Push changes to the main branch to trigger the CI/CD pipeline
+5. Security scans will run automatically before deployment
 
 ## 🔐 GitHub Secrets Configuration
 
@@ -146,8 +160,12 @@ Configure the following secrets in your GitHub repository:
 
 ### Workflow
 
-- The workflow is configured with paths-ignore to prevent specific files from triggering deployments
-- Edit `.github/workflows/s3.yml` to customize the deployment process
+- Two workflow files are available:
+  - `.github/workflows/s3.yml`: Basic S3 deployment
+  - `.github/workflows/s3_sast-scan.yml`: Complete CI/CD pipeline with security scanning
+- The workflows are configured with paths-ignore to prevent specific files from triggering deployments
+- Security scanning includes CodeQL analysis and Dependabot integration
+- Edit the workflow files to customize the deployment process
 - Add additional steps like cache invalidation if using CloudFront
 - Modify exclusion patterns to match your project requirements
 
@@ -179,9 +197,9 @@ The S3-Deployment project roadmap includes several exciting enhancements:
 
 ### Mid-term Goals
 
-- **CI/CD Pipeline Expansion**: Add automated testing and quality gates
+- **CI/CD Pipeline Enhancement**: Expand the existing CI/CD pipeline with more automated testing
 - **Content Versioning**: Implement versioning strategy for static assets
-- **Security Scanning**: Integrate security scanning for dependencies and content
+- **Advanced Security Scanning**: Enhance the existing security scanning with additional tools
 - **Performance Optimization**: Automate image optimization and minification of CSS/JS
 
 ### Long-term Vision
