@@ -1,0 +1,13 @@
+version: 2
+updates:
+  # Enable version updates for GitHub Actions (if you add workflows in .github/workflows)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Example for npm (uncomment if you add a package.json in the future)
+  # - package-ecosystem: "npm"
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
