@@ -226,6 +226,26 @@ The project includes accessibility improvements to ensure the website is usable 
 
 These changes help ensure compliance with WCAG guidelines and improve the user experience for all visitors.
 
+## 🛡️ Dependabot Integration
+
+This project uses [GitHub Dependabot](https://docs.github.com/en/code-security/dependabot) to automatically monitor and update dependencies. The configuration file is located at `.github/dependabot.yml`.
+
+- Dependabot checks for updates to GitHub Actions and (optionally) npm dependencies.
+- When updates are available, Dependabot will open pull requests for you to review and merge.
+- No changes are made to your codebase unless you approve and merge the pull requests.
+
+**Configuration Example:**
+```yaml
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+```
+
+For more details, see the official [Dependabot documentation](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-dependency-updates).
+
 ## Technologies Used
 
 ![AWS S3](https://img.shields.io/badge/AWS_S3-569A31?style=for-the-badge&logo=amazon-s3&logoColor=white)
