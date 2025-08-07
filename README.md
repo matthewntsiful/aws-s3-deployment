@@ -20,33 +20,57 @@
 ## 📊 Architecture
 
 ```mermaid
-graph TD
+graph LR
+    %% Styling
+    classDef repo fill:#f8f9fa,stroke:#333,stroke-width:2px,color:#333,stroke-dasharray: 5 5
+    classDef action fill:#e9ecef,stroke:#1a1f24,stroke-width:2px,color:#1a1f24,stroke-dasharray: 3 3
+    classDef aws fill:#ff9900,stroke:#232f3e,stroke-width:2px,color:white
+    classDef success fill:#28a745,stroke:#1e7e34,stroke-width:2px,color:white
+    classDef failure fill:#dc3545,stroke:#bd2130,stroke-width:2px,color:white
+    classDef user fill:#6c757d,stroke:#495057,stroke-width:2px,color:white
+    
+    %% Nodes
     subgraph GitHub[GitHub Repository]
-        A[Code Push/PR] -->|Triggers| B[GitHub Actions]
+        A[Code Push/PR] -->|Triggers| B[GitHub Actions Workflow]
     end
 
     subgraph GitHub_Actions[GitHub Actions]
-        B --> C[Code Checkout]
-        C --> D[Security Scans]
-        D -->|CodeQL| D1[JavaScript Analysis]
-        D -->|Dependabot| D2[Dependency Scanning]
-        D --> E[Security Checks Pass?]
-        E -->|Yes| F[Deploy to AWS S3]
-        E -->|No| G[Fail Build]
+        B --> C[Checkout Code]
+        C --> D[Run Security Scans]
+        D --> D1[CodeQL Analysis]
+        D --> D2[Dependabot Scan]
+        D --> E{Passed?}
+        E -->|✅ Yes| F[Deploy to S3]
+        E -->|❌ No| G[Notify Team & Fail Build]
+        F --> H[Invalidate CDN]
     end
 
-    subgraph AWS[AWS Cloud]
-        F --> H[S3 Bucket]
-        H --> I[Static Website Hosting]
-        H --> J[Content Delivery]
+    subgraph AWS[AWS Cloud Services]
+        I[S3 Bucket]:::aws
+        J[CloudFront]:::aws
+        K[Route 53]:::aws
+        
+        H --> I
+        I --> J
+        J --> K
     end
 
-    J --> K[End Users]
-
-    style GitHub fill:#f5f5f5,stroke:#333,stroke-width:2px
-    style GitHub_Actions fill:#f0f8ff,stroke:#333,stroke-width:2px
-    style AWS fill:#fff5f5,stroke:#333,stroke-width:2px
-    style K fill:#f0fff0,stroke:#333,stroke-width:2px
+    K --> L[End Users]:::user
+    
+    %% Styling Application
+    class A,B,C,D,D1,D2,E,F,G,H,I,J,K,L user;
+    class A,B,C,D,D1,D2,E,F,G,H action;
+    class I,J,K aws;
+    class F success;
+    class G failure;
+    class L user;
+    
+    %% Links
+    linkStyle 0,1,2,3,4,5,6,7,8,9,10,11 stroke:#6c757d,stroke-width:2px,fill:none;
+    
+    %% Legend
+    legend[shape: rect, label: "Legend"]
+    style legend fill:#f8f9fa,stroke:#333,stroke-width:1px
 ```
 
 ## 📋 Table of Contents
