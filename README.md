@@ -17,6 +17,38 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 
+## 📊 Architecture
+
+```mermaid
+graph TD
+    subgraph GitHub[GitHub Repository]
+        A[Code Push/PR] -->|Triggers| B[GitHub Actions]
+    end
+
+    subgraph GitHub_Actions[GitHub Actions]
+        B --> C[Code Checkout]
+        C --> D[Security Scans]
+        D -->|CodeQL| D1[JavaScript Analysis]
+        D -->|Dependabot| D2[Dependency Scanning]
+        D --> E[Security Checks Pass?]
+        E -->|Yes| F[Deploy to AWS S3]
+        E -->|No| G[Fail Build]
+    end
+
+    subgraph AWS[AWS Cloud]
+        F --> H[S3 Bucket]
+        H --> I[Static Website Hosting]
+        H --> J[Content Delivery]
+    end
+
+    J --> K[End Users]
+
+    style GitHub fill:#f5f5f5,stroke:#333,stroke-width:2px
+    style GitHub_Actions fill:#f0f8ff,stroke:#333,stroke-width:2px
+    style AWS fill:#fff5f5,stroke:#333,stroke-width:2px
+    style K fill:#f0fff0,stroke:#333,stroke-width:2px
+```
+
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
