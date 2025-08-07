@@ -20,7 +20,7 @@
 ## 📊 Architecture
 
 ```mermaid
-graph LR
+graph TD
     %% Styling
     classDef repo fill:#f8f9fa,stroke:#333,stroke-width:2px,color:#333,stroke-dasharray: 5 5
     classDef action fill:#e9ecef,stroke:#1a1f24,stroke-width:2px,color:#1a1f24,stroke-dasharray: 3 3
@@ -68,8 +68,11 @@ graph LR
     %% Links
     linkStyle 0,1,2,3,4,5,6,7,8,9,10,11 stroke:#6c757d,stroke-width:2px,fill:none;
     
+    %% Add some spacing for better readability
+    classDef default fill:#f8f9fa,stroke:#333,stroke-width:1.5px;
+    
     %% Legend
-    %% Note: Legend styling removed due to compatibility issues with GitHub's Mermaid renderer
+    %% Note: Using GitHub-compatible Mermaid syntax
 ```
 
 ## 📋 Table of Contents
