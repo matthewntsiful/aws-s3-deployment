@@ -69,8 +69,7 @@ graph LR
     linkStyle 0,1,2,3,4,5,6,7,8,9,10,11 stroke:#6c757d,stroke-width:2px,fill:none;
     
     %% Legend
-    legend[shape: rect, label: "Legend"]
-    style legend fill:#f8f9fa,stroke:#333,stroke-width:1px
+    %% Note: Legend styling removed due to compatibility issues with GitHub's Mermaid renderer
 ```
 
 ## 📋 Table of Contents
